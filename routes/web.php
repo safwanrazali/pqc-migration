@@ -6,6 +6,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/systems', function () {
-    return view('systems.index');
+Route::get('/dashboard', function () {
+    return view('dashboard');
 });
