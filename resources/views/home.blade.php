@@ -49,10 +49,10 @@
                                     <a href="/forgot-password" class="link-accent">Forgot password?</a>
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" class="btn btn-accent">
+                                    <a href="/dashboard" class="btn btn-accent">
                                         <i class="bi bi-box-arrow-in-right me-1"></i>
                                         Sign In
-                                    </button>
+                                    </a>
                                 </div>
                             </form>
                         </div>
