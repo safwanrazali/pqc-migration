@@ -183,7 +183,19 @@
                         <li><a href="#" class="nav-link">Compliance</a></li>
                         <li><a href="#" class="nav-link">Alerts</a></li>
                         <li><a href="#" class="nav-link">Settings</a></li>
+                        @if (Auth::check() && Auth::user()->role === 'admin')
+                            <li><a href="{{ url('/users') }}" class="nav-link">Users</a></li>
+                        @endif
                     </ul>
+                    @if (Auth::check())
+                        <form method="POST" action="{{ url('/logout') }}" class="mt-3">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-light w-100">
+                                <i class="bi bi-box-arrow-right me-1"></i>
+                                Logout
+                            </button>
+                        </form>
+                    @endif
                 </div>
             </div>
         @endunless
