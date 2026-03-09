@@ -1,5 +1,7 @@
 @extends('layouts.app-layout')
 
+@section('no_chrome', true)
+
 @section('content')
     <section class="py-5 d-flex align-items-center min-vh-100">
         <div class="container">
