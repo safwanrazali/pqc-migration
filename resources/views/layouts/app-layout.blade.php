@@ -39,6 +39,21 @@
             color: #2fb934;
         }
 
+        .navbar {
+            background-color: var(--surface) !important;
+            border-bottom: 1px solid rgba(230, 230, 234, 0.08);
+        }
+
+        .navbar .navbar-brand,
+        .navbar .nav-link,
+        .navbar .navbar-text {
+            color: var(--text-primary) !important;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
         .card {
             background-color: var(--surface);
             color: var(--text-primary);
@@ -114,13 +129,75 @@
         .link-accent:hover {
             color: #2fb934;
         }
+
+        .offcanvas {
+            background-color: var(--surface);
+            color: var(--text-primary);
+            border-right: 1px solid rgba(230, 230, 234, 0.08);
+        }
+
+        .offcanvas .nav-link {
+            color: var(--text-primary);
+        }
+
+        .offcanvas .nav-link:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid rgba(230, 230, 234, 0.08);
+            color: var(--text-muted);
+        }
     </style>
 
 </head>
 
 <body>
-    <div class="min-vh-100">
-        @yield('content')
+    @php($hideChrome = View::hasSection('no_chrome'))
+    <div class="d-flex flex-column min-vh-100">
+        @unless ($hideChrome)
+            <nav class="navbar navbar-expand-lg sticky-top">
+                <div class="container-fluid">
+                    <button class="btn btn-outline-light me-2" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#appSidebar" aria-controls="appSidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <a class="navbar-brand fw-semibold" href="#">PQC Dashboard</a>
+                    <div class="d-flex align-items-center ms-auto">
+                        <span class="navbar-text me-3">Monitoring</span>
+                        <a class="btn btn-sm btn-accent" href="#">Action</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="appSidebar" aria-labelledby="appSidebarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="appSidebarLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="nav nav-pills flex-column mb-auto">
+                        <li class="nav-item"><a href="#" class="nav-link">Dashboard</a></li>
+                        <li><a href="#" class="nav-link">Migrations</a></li>
+                        <li><a href="#" class="nav-link">Compliance</a></li>
+                        <li><a href="#" class="nav-link">Alerts</a></li>
+                        <li><a href="#" class="nav-link">Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+        @endunless
+        <main class="flex-grow-1">
+            @yield('content')
+        </main>
+        @unless ($hideChrome)
+            <footer class="py-3">
+                <div class="container d-flex justify-content-between align-items-center">
+                    <small>© {{ date('Y') }} PQC Migration Monitoring</small>
+                    <small class="text-accent">Secure by design</small>
+                </div>
+            </footer>
+        @endunless
     </div>
 
 </body>
